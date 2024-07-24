@@ -88,6 +88,45 @@ void xuat_Cau4(int a[MAXSIZE][MAXSIZE], int n, int m)
 	}
 }
 
+int KiemTra_CucDai(int a[MAXSIZE][MAXSIZE], int n, int m, int i, int j)
+{
+	int current = a[i][j];
+
+	// Kiểm tra phần tử bên trên
+	if (i > 0 && current <= a[i - 1][j]) {
+		return 0;
+	}
+
+	// Kiểm tra phần tử bên dưới
+	if (i < n - 1 && current <= a[i + 1][j]) {
+		return 0;
+	}
+
+	// Kiểm tra phần tử bên trái
+	if (j > 0 && current <= a[i][j - 1]) {
+		return 0;
+	}
+
+	// Kiểm tra phần tử bên phải
+	if (j < m - 1 && current <= a[i][j + 1]) {
+		return 0;
+	}
+
+	return 1;
+}
+
+void XuatPT_CucDai(int a[MAXSIZE][MAXSIZE], int n, int m) {
+	int i, j;
+	printf("Cac phan tu cuc dai la:\n");
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			if (KiemTra_CucDai(a, n, m, i, j)==1) {
+				printf("%d tai vi tri (%d, %d)\n", a[i][j], i, j);
+			}
+		}
+	}
+}
+
 int main()
 {
 	int a[MAXSIZE][MAXSIZE];
@@ -100,6 +139,8 @@ int main()
 	Max_TheoCot(a, n, m);
 	printf("\n--------------------------------\n");
 	xuat_Cau4(a, n, m);
+	printf("\n--------------------------------\n");
+	XuatPT_CucDai(a, n, m);
 	getch();
 	return 0;
 }
