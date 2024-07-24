@@ -43,6 +43,23 @@ int Tong_GiaTri(int a[MAXSIZE][MAXSIZE], int n, int m)
 	return tong;
 }
 
+void Max_TheoCot(int a[MAXSIZE][MAXSIZE], int n, int m)
+{
+	for (int j = 0; j < m; j++)
+	{
+		int max = 0;
+		for (int i = 0; i < n; i++)
+		{
+			if (a[i][j] >= max)
+			{
+				max = a[i][j];
+			}
+		}
+		printf("Phan tu lon nhat theo cot %d la: %d\n", j, max);
+	}
+}
+
+
 int main()
 {
 	int a[MAXSIZE][MAXSIZE];
@@ -52,6 +69,7 @@ int main()
 	printf("\n--------------------------------\n");
 	printf("Tong cac gia tri trong mang: %d", Tong_GiaTri(a, n, m));
 	printf("\n--------------------------------\n");
+	Max_TheoCot(a, n, m);
 	getch();
 	return 0;
 }
