@@ -30,6 +30,18 @@ void Xuat_Mang2C(int a[MAXSIZE][MAXSIZE], int n, int m)
 	}
 }
 
+int Tong_GiaTri(int a[MAXSIZE][MAXSIZE], int n, int m)
+{
+	int tong = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			tong += a[i][j];
+		}
+	}
+	return tong;
+}
 
 int main()
 {
@@ -37,7 +49,9 @@ int main()
 	int n, m;
 	Tao_Mang2C(a, n, m);
 	Xuat_Mang2C(a, n, m);
-	
+	printf("\n--------------------------------\n");
+	printf("Tong cac gia tri trong mang: %d", Tong_GiaTri(a, n, m));
+	printf("\n--------------------------------\n");
 	getch();
 	return 0;
 }
