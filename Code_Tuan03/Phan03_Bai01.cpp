@@ -1,4 +1,4 @@
-#include<stdio.h>
+﻿#include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
 #define MAXSIZE 100
@@ -59,6 +59,34 @@ void Max_TheoCot(int a[MAXSIZE][MAXSIZE], int n, int m)
 	}
 }
 
+void xuat_Cau4(int a[MAXSIZE][MAXSIZE], int n, int m)
+{
+	int i;
+
+	// Xuất các phần tử của đường biên trên
+	for (i = 0; i < m; i++) {
+		printf("%d ", a[0][i]);
+	}
+
+	// Xuất các phần tử của đường biên phải
+	for (i = 1; i < n; i++) {
+		printf("%d ", a[i][m - 1]);
+	}
+
+	// Xuất các phần tử của đường biên dưới (nếu có nhiều hơn 1 hàng)
+	if (n > 1) {
+		for (i = m - 2; i >= 0; i--) {
+			printf("%d ", a[n - 1][i]);
+		}
+	}
+
+	// Xuất các phần tử của đường biên trái (nếu có nhiều hơn 1 cột)
+	if (m > 1) {
+		for (i = n - 2; i > 0; i--) {
+			printf("%d ", a[i][0]);
+		}
+	}
+}
 
 int main()
 {
@@ -70,6 +98,8 @@ int main()
 	printf("Tong cac gia tri trong mang: %d", Tong_GiaTri(a, n, m));
 	printf("\n--------------------------------\n");
 	Max_TheoCot(a, n, m);
+	printf("\n--------------------------------\n");
+	xuat_Cau4(a, n, m);
 	getch();
 	return 0;
 }
