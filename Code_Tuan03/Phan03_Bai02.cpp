@@ -67,6 +67,23 @@ void xuatPT_DuongCheoSongSong(int a[][MAXSIZE], int n)
     }
 }
 
+int tim_MAX_ThuocTamGiac_TrenDC_Chinh(int a[][MAXSIZE], int n)
+{
+    int max = 0;
+    for (int i = 0; i < n; i++)
+	{
+        for (int j = i; j < n; j++)
+		{
+            if (a[i][j] >= max)
+			{
+                max = a[i][j];
+            }
+        }
+    }
+
+    return max;
+}
+
 int main()
 {
 	int a[MAXSIZE][MAXSIZE];
@@ -77,6 +94,8 @@ int main()
 	xuatPT_DuongCheoChinh(a,n);
 	printf("\n----------------------------------\n");
 	xuatPT_DuongCheoSongSong(a,n);
+	printf("\n----------------------------------\n");
+	printf("Phan tu lon nhat thuoc tam giac tren duong cheo chinh la: %d\n", tim_MAX_ThuocTamGiac_TrenDC_Chinh(a,n));
 	getch();
 	return 0;
 }
