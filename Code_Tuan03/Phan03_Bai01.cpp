@@ -176,7 +176,55 @@ void xetPT_HoangHau(int a[MAXSIZE][MAXSIZE], int n, int m)
 			}
 		}
 	}
+}
+int ktra_PT_YenNgua(int a[][MAXSIZE], int n, int m, int i, int j)
+{
+    int k;
+    int current = a[i][j];
+    
+    // Kiểm tra xem nó có phải là nhỏ nhất trong hàng của nó không
+    for (k = 0; k < m; k++)
+	{
+        if (a[i][k] < current)
+		{
+            return 0;
+        }
+    }
+    
+    // Kiểm tra xem nó có phải là lớn nhất trong cột của nó không
+    for (k = 0; k < n; k++)
+	{
+        if (a[k][j] > current)
+		{
+            return 0;
+        }
+    }
+    
+    return 1;
 }
+
+void xuatPT_YenNgua(int a[MAXSIZE][MAXSIZE], int n, int m)
+{
+    int i, j;
+	int t=0;
+    for (i = 0; i < n; i++) 
+	{
+        for (j = 0; j < m; j++)
+		{
+			if (ktra_PT_YenNgua(a, n, m, i, j)==1)
+			{
+                printf("%d tai vi tri (%d, %d)\n", a[i][j], i, j);
+				t=1;
+            }
+        }
+    }
+
+	if (t==0)
+	{
+		printf("Khong co phan tu YEN NGUA nao\n");
+	}
+}
+
 int main()
 {
 	int a[MAXSIZE][MAXSIZE];
@@ -194,6 +242,9 @@ int main()
 	printf("\n--------------------------------\n");
 	printf("CAC PHAN TU HOANG HAU LA:\n");
 	xetPT_HoangHau(a,n,m);
+	printf("\n--------------------------------\n");
+	printf("CAC DIEM YEN NGUA LA:\n");
+	xuatPT_YenNgua(a,n,m);
 	getch();
 	return 0;
 }
