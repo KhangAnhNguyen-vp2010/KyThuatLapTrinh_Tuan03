@@ -127,6 +127,56 @@ void XuatPT_CucDai(int a[MAXSIZE][MAXSIZE], int n, int m) {
 	}
 }
 
+int xetDuongCheo (int a[][100], int dong, int cot, int i, int j)
+{
+	int k, h; //k: dong, h: cot
+	for (k=i, h=j; k>=0 && h<cot; k--, h++)
+		if (a[k][h] > a[i][j])
+			return 0;
+	for (k=i+1, h=j-1; k<dong && h>=0; k++, h--)
+		if (a[k][h] > a[i][j])
+			return 0;
+	for (k=i-1, h =j-1; k>=0 && h>=0; k--, h--)
+		if (a[k][h] > a[i][j])
+			return 0;
+	for (k=i+1, h=j+1; k<dong && h<cot; k++, h++)
+		if (a[k][h] > a[i][j])
+			return 0;
+	return 1;
+}
+
+int xetCotDong (int a[][100], int dong, int cot, int i, int j)
+{
+	for (int k=0; k<dong; k++)
+		if (a[k][j]>a[i][j])
+			return 0;
+	for (int k=0; k<cot; k++)
+		if (a[i][k]>a[i][j])
+			return 0;
+	return 1;
+} 
+
+int xetTongQuat (int a[][MAXSIZE], int dong, int cot, int i, int j)
+{
+	if (xetCotDong(a, dong, cot, i, j)==1)
+		if (xetDuongCheo(a, dong, cot, i, j)==1)
+			return 1;
+	return 0;
+}
+
+void xetPT_HoangHau(int a[MAXSIZE][MAXSIZE], int n, int m)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (xetTongQuat(a,n,m,i,j)==1)
+			{
+				printf("%d ", a[i][j]);
+			}
+		}
+	}
+}
 int main()
 {
 	int a[MAXSIZE][MAXSIZE];
@@ -141,6 +191,9 @@ int main()
 	xuat_Cau4(a, n, m);
 	printf("\n--------------------------------\n");
 	XuatPT_CucDai(a, n, m);
+	printf("\n--------------------------------\n");
+	printf("CAC PHAN TU HOANG HAU LA:\n");
+	xetPT_HoangHau(a,n,m);
 	getch();
 	return 0;
 }
