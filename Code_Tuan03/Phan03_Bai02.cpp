@@ -34,6 +34,14 @@ void xuat_Mang(int a[][MAXSIZE], int n)
 	}
 }
 
+void xuatPT_DuongCheoChinh(int a[][MAXSIZE], int n)
+{
+    printf("Cac phan tu tren duong cheo chinh la:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", a[i][i]);
+    }
+    printf("\n");
+}
 
 int main()
 {
@@ -41,6 +49,8 @@ int main()
 	int n;
 	tao_MangCapN(a,n);
 	xuat_Mang(a,n);
+	printf("\n----------------------------------\n");
+	xuatPT_DuongCheoChinh(a,n);
 	getch();
 	return 0;
 }
