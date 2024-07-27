@@ -65,6 +65,34 @@ void xuat_CotCoSoLe(int a[][MAXSIZE], int n, int m)
 	}
 }
 
+int tim_MaxTrenDuongBien(int a[][MAXSIZE], int n, int m) 
+{
+    int i;
+    int max = 0;
+
+    // Duyệt qua hàng đầu tiên và hàng cuối cùng
+	for (i = 0; i < m; i++) {
+        if (a[0][i] >= max) {
+            max = a[0][i];
+        }
+        if (a[n-1][i] >= max) {
+			max = a[n-1][i];
+        }
+    }
+
+    // Duyệt qua cột đầu tiên và cột cuối cùng (loại trừ các góc đã duyệt)
+	for (i = 1; i < n - 1; i++) {
+        if (a[i][0] >= max) {
+            max = a[i][0];
+        }
+        if (a[i][m-1] >= max) {
+            max = a[i][m-1];
+        }
+    }
+
+    return max;
+}
+
 int main()
 {
 	int a[MAXSIZE][MAXSIZE];
@@ -73,6 +101,8 @@ int main()
 	Xuat_Mang2C(a,n,m);
 	printf("\n------------------------------------\n");
 	xuat_CotCoSoLe(a,n,m);
+	printf("\n------------------------------------\n");
+	printf("Phan tu max tren duong bien la: %d\n", tim_MaxTrenDuongBien(a,n,m));
 	getch();
 	return 0;
 }
