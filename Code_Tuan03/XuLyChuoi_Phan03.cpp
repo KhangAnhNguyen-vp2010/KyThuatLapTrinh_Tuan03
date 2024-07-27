@@ -29,6 +29,31 @@ int isAllDigits(char s[])
     return 1; // Toàn ký số
 }
 
+void bienDoi_Chuoi(char s[])
+{
+    int inWord = 0; 
+
+    for (int i = 0; s[i] != '\0'; i++)
+	{
+        if (isalpha(s[i]))
+		{
+            if (!inWord)
+			{ 
+                s[i] = toupper(s[i]);
+                inWord = 1;
+            } 
+			else 
+			{
+                s[i] = tolower(s[i]);
+            }
+        } 
+		else 
+		{
+            inWord = 0;
+        }
+    }
+}
+
 int main()
 {
 	char s[MAXSIZE];
@@ -40,6 +65,10 @@ int main()
     } else {
         printf("Chuoi khong chua toan ky so.\n");
     }
+	printf("\n-------------------------------------------------\n");
+	bienDoi_Chuoi(s);
+	printf("Chuoi sau khi bien doi:\n");
+	xuat_Chuoi(s);
 	getch();
 	return 0;
 }
