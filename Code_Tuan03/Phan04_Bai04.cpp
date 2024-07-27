@@ -111,6 +111,33 @@ void sortMatrix(int a[][MAXSIZE], int n)
     }
 }
 
+void sortMatrixColumns(int a[][MAXSIZE], int n) 
+{
+    int col[100]; // Mảng tạm để lưu các phần tử của một cột
+    int i, j;
+
+    for (j = 0; j < n; j++) {
+        // Lấy các phần tử của cột j vào mảng tạm col
+        for (i = 0; i < n; i++) {
+            col[i] = a[i][j];
+        }
+
+        // Sắp xếp cột theo yêu cầu
+        if (j % 2 == 0) {
+            // Cột có chỉ số chẵn, sắp xếp tăng dần
+			sort_Tang(col, n);
+        } else {
+            // Cột có chỉ số lẻ, sắp xếp giảm dần
+			sort_Giam(col, n);
+        }
+
+        // Gán lại các phần tử đã sắp xếp vào cột j
+        for (i = 0; i < n; i++) {
+            a[i][j] = col[i];
+        }
+    }
+}
+
 int main()
 {
 	int a[MAXSIZE][MAXSIZE];
@@ -126,6 +153,10 @@ int main()
 	printf("\n---------------------------------------\n");
 	printf("SAP XEP DONG CHI SO LE TANG DAN - DONG CHI SO CHAN GIAM DAN\n");
 	sortMatrix(a,n);
+	xuat_Mang(a,n);
+	printf("\n---------------------------------------\n");
+	printf("SAP XEP COT CHI SO LE GIAM DAN - COT CHI SO CHAN TANG DAN\n");
+	sortMatrixColumns(a,n);
 	xuat_Mang(a,n);
 	getch();
 	return 0;
