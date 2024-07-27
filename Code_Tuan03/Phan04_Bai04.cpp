@@ -93,6 +93,24 @@ void sortAntiDiagonal(int a[][MAXSIZE], int n, int ascending) {
     }
 }
 
+void sortMatrix(int a[][MAXSIZE], int n)
+{
+    int i;
+	for (i = 0; i < n; i++)
+	{
+        if (i % 2 == 0) 
+		{
+            // Dòng có chỉ số chẵn, sắp xếp giảm dần
+			sort_Giam(a[i], n);
+        } 
+		else 
+		{
+            // Dòng có chỉ số lẻ, sắp xếp tăng dần
+            sort_Tang(a[i], n);
+        }
+    }
+}
+
 int main()
 {
 	int a[MAXSIZE][MAXSIZE];
@@ -104,6 +122,10 @@ int main()
 	int c;
 	scanf("%d", &c);
 	sortAntiDiagonal(a,n,c);
+	xuat_Mang(a,n);
+	printf("\n---------------------------------------\n");
+	printf("SAP XEP DONG CHI SO LE TANG DAN - DONG CHI SO CHAN GIAM DAN\n");
+	sortMatrix(a,n);
 	xuat_Mang(a,n);
 	getch();
 	return 0;
