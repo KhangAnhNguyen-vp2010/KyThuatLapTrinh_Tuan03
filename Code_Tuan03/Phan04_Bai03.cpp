@@ -106,6 +106,46 @@ int ktra_ChuaChuSo2(int num)
     return 0;
 }
 
+int ktra_PTCucTieu(int a[][MAXSIZE], int n, int m, int i, int j) {
+    int current = a[i][j];
+
+    // Kiểm tra phần tử phía trên
+    if (i > 0 && a[i - 1][j] <= current) {
+        return 0;
+    }
+
+    // Kiểm tra phần tử phía dưới
+    if (i < n - 1 && a[i + 1][j] <= current) {
+        return 0;
+    }
+
+    // Kiểm tra phần tử phía trái
+    if (j > 0 && a[i][j - 1] <= current) {
+        return 0;
+    }
+
+    // Kiểm tra phần tử phía phải
+    if (j < m - 1 && a[i][j + 1] <= current) {
+        return 0;
+    }
+
+    return 1;
+}
+
+void xuat_PTCucTieu(int a[][MAXSIZE], int n, int m) 
+{
+    printf("Cac phan tu cuc tieu cua ma tran la:\n");
+	for (int i = 0; i < n; i++) 
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (ktra_PTCucTieu(a, n, m, i, j)) {
+                printf("%d tai vi tri (%d, %d)\n", a[i][j], i, j);
+            }
+        }
+    }
+}
+
 int demSoPT_ChuaChuSo2(int a[][MAXSIZE], int n, int m)
 {
     int count = 0;
@@ -136,6 +176,8 @@ int main()
 	printf("Phan tu max tren duong bien la: %d\n", tim_MaxTrenDuongBien(a,n,m));
 	printf("\n------------------------------------\n");
 	printf("So phan tu trong ma tran co chua chu so 2 la: %d\n", demSoPT_ChuaChuSo2(a,n,m));
+	printf("\n------------------------------------\n");
+	xuat_PTCucTieu(a,n,m);
 	getch();
 	return 0;
 }
