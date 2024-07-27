@@ -93,6 +93,37 @@ int tim_MaxTrenDuongBien(int a[][MAXSIZE], int n, int m)
     return max;
 }
 
+int ktra_ChuaChuSo2(int num)
+{
+    while (num != 0)
+	{
+        if (num % 10 == 2)
+		{
+            return 1;
+        }
+        num /= 10;
+    }
+    return 0;
+}
+
+int demSoPT_ChuaChuSo2(int a[][MAXSIZE], int n, int m)
+{
+    int count = 0;
+
+	for (int i = 0; i < n; i++)
+	{
+        for (int j = 0; j < m; j++)
+		{
+			if (ktra_ChuaChuSo2(a[i][j]))
+			{
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
+
 int main()
 {
 	int a[MAXSIZE][MAXSIZE];
@@ -103,6 +134,8 @@ int main()
 	xuat_CotCoSoLe(a,n,m);
 	printf("\n------------------------------------\n");
 	printf("Phan tu max tren duong bien la: %d\n", tim_MaxTrenDuongBien(a,n,m));
+	printf("\n------------------------------------\n");
+	printf("So phan tu trong ma tran co chua chu so 2 la: %d\n", demSoPT_ChuaChuSo2(a,n,m));
 	getch();
 	return 0;
 }
