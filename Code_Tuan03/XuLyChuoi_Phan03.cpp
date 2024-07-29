@@ -97,6 +97,26 @@ void findNameInFullName(char fullName[], char name[])
     }
 }
 
+void splitName(char fullName[], char middleName[], char lastName[])
+{
+    const char* lastSpace = strrchr(fullName, ' ');
+
+    if (lastSpace != NULL)
+	{
+        // Sao chép phần họ lót
+        strncpy(middleName, fullName, lastSpace - fullName);
+        middleName[lastSpace - fullName] = '\0'; // Thêm ký tự kết thúc chuỗi
+
+        // Sao chép phần tên
+        strcpy(lastName, lastSpace + 1);
+    } 
+	else 
+	{
+        // Trường hợp không có khoảng trắng, coi như toàn bộ là tên
+        strcpy(middleName, "");
+        strcpy(lastName, fullName);
+    }
+}
 
 int main()
 {
@@ -124,6 +144,12 @@ int main()
 	printf("Nhap chuoi con can tim kiem:\n");
 	nhap_Chuoi(str2);
 	findNameInFullName(s,str2);
+	printf("\n-------------------------------------------------\n");
+	char middleName[MAXSIZE];
+	char lastName[MAXSIZE];
+	splitName(s,middleName,lastName);
+	printf("Chuoi ho lot: \"%s\"\n", middleName);
+    printf("Chuoi ten: \"%s\"\n", lastName);
 	getch();
 	return 0;
 }
