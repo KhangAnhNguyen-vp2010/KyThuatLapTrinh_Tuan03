@@ -85,6 +85,17 @@ void chuanHoa_Chuoi(char str[])
     }
 }
 
+void findNameInFullName(char fullName[], char name[]) 
+{
+    if (strstr(fullName, name) != NULL)
+	{
+        printf("Chuoi '%s' ton tai trong chuoi: %s\n", name, fullName);
+    } 
+	else 
+	{
+        printf("Chuoi '%s' khong ton tai trong chuoi.\n", name);
+    }
+}
 
 
 int main()
@@ -108,7 +119,11 @@ int main()
 	printf("Chuoi sau khi chuan hoa:\n");
 	chuanHoa_Chuoi(s);
 	xuat_Chuoi(s);
-	
+	printf("\n-------------------------------------------------\n");
+	char str2[MAXSIZE];
+	printf("Nhap chuoi con can tim kiem:\n");
+	nhap_Chuoi(str2);
+	findNameInFullName(s,str2);
 	getch();
 	return 0;
 }
