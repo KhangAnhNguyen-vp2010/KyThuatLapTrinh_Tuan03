@@ -54,21 +54,61 @@ void bienDoi_Chuoi(char s[])
     }
 }
 
+void chuanHoa_Chuoi(char str[]) 
+{
+    int x = 0;
+    int spaceFlag = 0;
+    for (int i = 0; str[i]; i++) 
+	{
+        if (!isspace(str[i])) 
+		{
+            if (spaceFlag && x > 0) 
+			{
+                str[x++] = ' ';
+            }
+            str[x++] = str[i];
+            spaceFlag = 0;
+        } 
+		else if (x > 0)
+		{
+            spaceFlag = 1;
+        }
+    }
+	str[x] = '\0';
+
+    if (isspace(str[0])) 
+	{
+        for (int i = 0; str[i]; i++)
+		{
+            str[i] = str[i + 1];
+        }
+    }
+}
+
+
+
 int main()
 {
 	char s[MAXSIZE];
 	nhap_Chuoi(s);
 	xuat_Chuoi(s);
 	printf("\n-------------------------------------------------\n");
-	if (isAllDigits(s)) {
+	if (isAllDigits(s)) 
+	{
         printf("Chuoi chua toan ky so.\n");
-    } else {
+    } else 
+	{
         printf("Chuoi khong chua toan ky so.\n");
     }
 	printf("\n-------------------------------------------------\n");
 	bienDoi_Chuoi(s);
 	printf("Chuoi sau khi bien doi:\n");
 	xuat_Chuoi(s);
+	printf("\n-------------------------------------------------\n");
+	printf("Chuoi sau khi chuan hoa:\n");
+	chuanHoa_Chuoi(s);
+	xuat_Chuoi(s);
+	
 	getch();
 	return 0;
 }
